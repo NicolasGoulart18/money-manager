@@ -7,9 +7,22 @@ public class Transaction {
     private BigDecimal value;
     private TransactionType type;
     public Transaction(String description, BigDecimal value, TransactionType type) {
-        this.description = description;
-        this.value = value;
-        this.type = type;
+        if(description==null || description.isBlank()){
+            throw new IllegalArgumentException("Descrição inválida!");
+        }else{
+             this.description = description;
+        }
+        if (value==null || value.compareTo(BigDecimal.ZERO)<=0) {
+            throw new IllegalArgumentException("Valor informado inválido");
+        }else{
+            this.value =value;
+        }
+        if(type==null){
+            throw new IllegalArgumentException("Tipo Inválido");
+        }else{
+             this.type = type;
+        }
+        
     }
     public String getDescription() {
         return description;
