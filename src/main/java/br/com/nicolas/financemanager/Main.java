@@ -12,10 +12,9 @@ public class Main {
         
         System.out.println("Informe a descrição: ");
         String description=scanner.nextLine();
+       
         System.out.println("Informe o valor da transação: ");
         String valueInput=scanner.nextLine();
-   
-        
         try {
             BigDecimal value = new  BigDecimal(valueInput);
             System.out.println("Valor convertido:"+value);
@@ -23,7 +22,14 @@ public class Main {
             System.out.println("Informe um valor de transação Válido");
         }
 
-
+        System.out.println("Informe o tipo de transação (INCOME ou EXPENSE)");
+        String typeInput=scanner.nextLine();
+        try {
+           TransactionType type = TransactionType.valueOf(typeInput);
+            System.out.println("Tipo convertido:"+typeInput);
+        } catch (IllegalArgumentException exception) {
+            System.out.println("Informe um tipo válido!");
+        }
         
 
     }
