@@ -77,6 +77,15 @@ Criar um gerenciador financeiro de terminal em Java e evoluí-lo gradualmente at
 * Dentro do `try`, as variáveis `value` e `type` podem ser usadas para criar uma `Transaction`.
 * Após criar a transação, ela é adicionada ao sistema com `manager.addTransaction(transaction)`.
 
+### Laços de repetição
+
+- `while` repete um bloco enquanto uma condição for verdadeira.
+- A variável `boolean cadastrarOutro` controla se o cadastro continua.
+- `equalsIgnoreCase("S")` aceita `S` ou `s` como resposta para continuar.
+- O `FinanceManager` é criado antes do `while` para manter todas as transações na mesma lista.
+- O resumo final fica fora do `while`, pois deve aparecer apenas depois que o usuário encerrar os cadastros.
+
+
 ## Próximos passos
 
 * Mostrar as transações cadastradas pelo terminal.
