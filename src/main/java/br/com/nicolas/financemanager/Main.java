@@ -31,7 +31,7 @@ public class Main {
             System.out.println("Transação cadastrada com sucesso!");
             manager.listTransactions();
             System.out.println("Saldo atual: "+manager.calculateBalance());
-            System.out.println("Deseja cadastrar outro outro ? (S/N)");
+            System.out.println("Deseja cadastrar outra transação? (S/N)");
             String resposta =scanner.nextLine();
             cadastrarOutro = resposta.equalsIgnoreCase("S");
         
