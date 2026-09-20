@@ -28,6 +28,8 @@ Criar um gerenciador financeiro de terminal em Java e evoluí-lo gradualmente at
 
 * `TransactionType` limita os tipos possíveis de transação.
 * Neste projeto, uma transação pode ser `INCOME` ou `EXPENSE`.
+* `TransactionType.valueOf(texto)` converte uma `String` em um valor do enum.
+* O texto precisa corresponder a um valor existente no enum.
 
 ### BigDecimal
 
@@ -35,6 +37,7 @@ Criar um gerenciador financeiro de terminal em Java e evoluí-lo gradualmente at
 * Ele evita problemas de precisão que podem acontecer ao usar `double`.
 * `BigDecimal.ZERO` representa o valor zero.
 * `compareTo(BigDecimal.ZERO)` permite comparar valores financeiros.
+* `new BigDecimal(texto)` converte um texto em valor financeiro.
 
 ### Coleções
 
@@ -59,11 +62,26 @@ Criar um gerenciador financeiro de terminal em Java e evoluí-lo gradualmente at
 * `throw new IllegalArgumentException(...)` impede a criação de uma transação inválida.
 * `try-catch` captura uma exceção e permite que o programa continue executando.
 * `getMessage()` retorna a mensagem da exceção.
+* `NumberFormatException` acontece quando um texto não pode ser convertido em número.
+* `NumberFormatException` é um tipo de `IllegalArgumentException`.
+
+### Entrada de dados pelo terminal
+
+* `Scanner` lê os dados digitados pelo usuário.
+* `System.in` representa a entrada do sistema, normalmente o teclado.
+* `nextLine()` lê uma linha inteira e retorna uma `String`.
+* O usuário digita descrição, valor e tipo da transação.
+* O valor digitado é convertido para `BigDecimal`.
+* O tipo digitado é convertido para `TransactionType`.
+* As conversões e a criação da transação ficam dentro do mesmo `try`, pois podem gerar exceções.
+* Dentro do `try`, as variáveis `value` e `type` podem ser usadas para criar uma `Transaction`.
+* Após criar a transação, ela é adicionada ao sistema com `manager.addTransaction(transaction)`.
 
 ## Próximos passos
 
+* Mostrar as transações cadastradas pelo terminal.
+* Permitir cadastrar mais de uma transação sem reiniciar o programa.
 * Melhorar validações e operações com transações.
-* Ler dados digitados pelo usuário no terminal.
 * Aprender outras coleções: `Set` e `Map`.
 * Criar testes com JUnit.
 * Salvar dados com SQL e JDBC.
