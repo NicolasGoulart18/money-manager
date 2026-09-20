@@ -9,9 +9,8 @@ public class Main {
         Scanner scanner = new Scanner (System.in);
         boolean cadastrarOutro=true;
         FinanceManager manager=new FinanceManager();        
+        System.out.println("---- MONEY MANAGER ----");        
         while (cadastrarOutro) {
-
-        System.out.println("---- MONEY MANAGER ----");
         
         System.out.println("Informe a descrição: ");
         String description=scanner.nextLine();
@@ -28,9 +27,6 @@ public class Main {
             TransactionType type =  TransactionType.valueOf(typeInput);
             Transaction transaction = new Transaction(description, value, type);
             manager.addTransaction(transaction);
-            System.out.println("Transação cadastrada com sucesso!");
-            manager.listTransactions();
-            System.out.println("Saldo atual: "+manager.calculateBalance());
             System.out.println("Deseja cadastrar outra transação? (S/N)");
             String resposta =scanner.nextLine();
             cadastrarOutro = resposta.equalsIgnoreCase("S");
@@ -39,8 +35,16 @@ public class Main {
         } catch ( IllegalArgumentException exception) {
             System.out.println("Informe valores válidos! "+exception.getMessage());
         }
-        
-        }
-       
+    
+
+
+     }
+        System.out.println("---- RESUMO FINAL ----");
+        manager.listTransactions();
+        System.out.println("Receita: "+manager.calculateTotalByType(TransactionType.INCOME));
+        System.out.println("Despesa: "+manager.calculateTotalByType(TransactionType.EXPENSE));     
+        System.out.println("Saldo: "+manager.calculateBalance());  
+     
+
     }
 }
