@@ -1,23 +1,25 @@
-# Money Manager Java
+# Money Manager
 
-Terminal application built in Java to practice the foundations required before Spring Boot.
+Terminal-based financial manager developed in Java as a study project before moving into Spring Boot.
 
-## Version 1
+The current version focuses on Object-Oriented Programming, collections, validation, exceptions, and financial calculations using `BigDecimal`.
 
-The first version keeps data in memory and focuses on a small but functional financial flow.
+## Current Version
 
-## Current features
+Version 1 stores all data in memory and provides a complete basic transaction flow through the terminal.
 
-- Register income and expenses from the terminal
-- Register multiple transactions in a single execution
-- Validate transaction description, value and type
+## Features
+
+- Register income and expenses
+- Register multiple transactions in one execution
+- Validate description, value, and transaction type
 - List registered transactions
 - Calculate the current balance
 - Calculate totals by transaction type
-- Find a transaction by its description
-- Display a final summary after the registration flow
+- Search for a transaction by description
+- Display a final financial summary
 
-## Project structure
+## Project Structure
 
 ```text
 .
@@ -33,47 +35,79 @@ The first version keeps data in memory and focuses on a small but functional fin
 └── README.md
 ```
 
+### Main responsibilities
+
 - `Transaction` represents an income or expense.
 - `TransactionType` defines the available transaction types.
-- `FinanceManager` stores and manages transactions in memory.
-- `Main` reads terminal input and starts the application flow.
-- `docs/anotacoes.md` contains learning notes written during development.
+- `FinanceManager` stores transactions and applies financial operations.
+- `Main` handles terminal input and controls the application flow.
+- `docs/anotacoes.md` records the concepts learned during development.
 
-## Running the project
+## Concepts Practiced
 
-1. Open the repository in VS Code with the Java extension installed.
-2. Open `Main.java`.
-3. Run the `main` method.
-4. Enter the description, value and transaction type when requested.
-5. Use `S` to register another transaction or `N` to display the final summary.
-
-Use a decimal point for values, such as `50.00`, and use `INCOME` or `EXPENSE` for the transaction type.
-
-## Learning progress
-
-Completed in this version:
-
-- Classes, objects, constructors and encapsulation
+- Classes and objects
+- Constructors
+- Encapsulation
 - Enums
 - Methods and return values
-- Association between `FinanceManager` and `Transaction`
-- `List`, `ArrayList` and `for-each`
-- `BigDecimal` for financial calculations
-- Input validation with `IllegalArgumentException`
-- Exception handling with `try-catch`
-- Terminal input with `Scanner`
-- Repetition with `while`
+- Association between classes
+- `List` and `ArrayList`
+- `for-each`
+- `BigDecimal`
+- Input validation
+- `IllegalArgumentException`
+- `NumberFormatException`
+- `try-catch`
+- `Scanner`
+- `while`
 
-Next steps:
+## How to Run
 
-- Continue collection operations and validations
-- Handle errors and invalid operations with exceptions
-- Add persistence with SQL and JDBC
-- Create tests and later evolve the project into a Spring Boot API
+1. Clone the repository.
+2. Open it in VS Code or another Java IDE.
+3. Open `Main.java`.
+4. Run the `main` method.
+5. Enter the transaction information requested in the terminal.
+
+Use a decimal point for monetary values, for example:
+
+```text
+50.00
+```
+
+Available transaction types:
+
+```text
+INCOME
+EXPENSE
+```
+
+## Learning Roadmap
+
+The project is being evolved gradually:
+
+1. Strengthen OOP fundamentals
+2. Practice Collections and Generics
+3. Improve exception handling
+4. Add automated tests
+5. Add data persistence with SQL/JDBC
+6. Evolve the application into a Spring Boot API
+
+## Documentation
+
+Detailed study notes are available in:
+
+```text
+docs/anotacoes.md
+```
 
 ## Technologies
 
 - Java
-- Java Collections with `List` and `ArrayList`
-- `BigDecimal` for financial values
-- Terminal application
+- Java Collections
+- BigDecimal
+- Git and GitHub
+
+## Status
+
+Version 1 in development.
