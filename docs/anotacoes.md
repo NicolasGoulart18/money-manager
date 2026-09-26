@@ -2,93 +2,121 @@
 
 ## Objetivo do projeto
 
-Criar um gerenciador financeiro de terminal em Java e evoluí-lo gradualmente até chegar ao Spring Boot.
+Criar um gerenciador financeiro de terminal em Java e evoluí-lo gradualmente até chegar a uma API com Spring Boot.
 
-## Conceitos Java aprendidos
+Este arquivo registra os principais conceitos praticados durante o desenvolvimento.
 
-### Classes e objetos
+## 1. Classes e objetos
 
-* Classe é um molde que define características e comportamentos.
-* Objeto é uma instância criada a partir de uma classe.
-* `Transaction` representa uma receita ou despesa.
-* `FinanceManager` gerencia várias transações.
+- Classe é um molde que define características e comportamentos.
+- Objeto é uma instância criada a partir de uma classe.
+- `Transaction` representa uma receita ou despesa.
+- `FinanceManager` gerencia várias transações.
 
-### Atributos, construtor e `this`
+## 2. Atributos, construtor e `this`
 
-* Atributos guardam os dados de um objeto.
-* O construtor é chamado quando usamos `new` para criar um objeto.
-* `this` representa o próprio objeto criado e ajuda a diferenciar atributo de parâmetro.
+- Atributos armazenam o estado de um objeto.
+- O construtor é executado quando usamos `new`.
+- `this` representa o próprio objeto e ajuda a diferenciar atributos de parâmetros.
 
-### Encapsulamento
+## 3. Encapsulamento
 
-* Os atributos são `private` para proteger o estado do objeto.
-* Os getters permitem acessar os dados de forma controlada.
+- Os atributos são `private` para proteger o estado do objeto.
+- Os getters permitem acessar os dados de forma controlada.
+- As validações impedem que objetos inválidos sejam criados.
 
-### Enum
+## 4. Enum
 
-* `TransactionType` limita os tipos possíveis de transação.
-* Neste projeto, uma transação pode ser `INCOME` ou `EXPENSE`.
-* `TransactionType.valueOf(texto)` converte uma `String` em um valor do enum.
-* O texto precisa corresponder a um valor existente no enum.
+O enum `TransactionType` limita os tipos possíveis de transação:
 
-### BigDecimal
+```text
+INCOME
+EXPENSE
+```
 
-* `BigDecimal` é usado para valores financeiros.
-* Ele evita problemas de precisão que podem acontecer ao usar `double`.
-* `BigDecimal.ZERO` representa o valor zero.
-* `compareTo(BigDecimal.ZERO)` permite comparar valores financeiros.
-* `new BigDecimal(texto)` converte um texto em valor financeiro.
+`TransactionType.valueOf(texto)` converte uma `String` em um valor do enum.
 
-### Coleções
+## 5. BigDecimal
 
-* `List<Transaction>` armazena várias transações.
-* `ArrayList` é a implementação de lista usada no `FinanceManager`.
-* O `for-each` percorre cada transação da lista.
+`BigDecimal` é utilizado para valores financeiros porque evita problemas de precisão comuns em tipos de ponto flutuante.
 
-### Métodos criados
+Conceitos praticados:
 
-* `addTransaction()` adiciona uma transação à lista.
-* `listTransactions()` mostra as transações registradas.
-* `calculateBalance()` calcula o saldo atual.
-* `calculateTotalByType()` calcula o total de receitas ou despesas.
-* `findTransactionByDescription()` busca uma transação pela descrição.
-* `getSignedValue()` retorna o valor positivo para receita e negativo para despesa.
-* `toString()` define como uma transação será exibida no terminal.
+- `BigDecimal.ZERO`
+- `compareTo()`
+- `add()`
+- Criação de valores a partir de texto
 
-### Validações e exceções
+## 6. Coleções
 
-* O construtor de `Transaction` valida descrição, valor e tipo.
-* `if` verifica se um dado é inválido.
-* `throw new IllegalArgumentException(...)` impede a criação de uma transação inválida.
-* `try-catch` captura uma exceção e permite que o programa continue executando.
-* `getMessage()` retorna a mensagem da exceção.
-* `NumberFormatException` acontece quando um texto não pode ser convertido em número.
-* `NumberFormatException` é um tipo de `IllegalArgumentException`.
+- `List<Transaction>` armazena várias transações.
+- `ArrayList` é a implementação utilizada pelo `FinanceManager`.
+- O `for-each` percorre os elementos da lista.
 
-### Entrada de dados pelo terminal
+## 7. Métodos do projeto
 
-* `Scanner` lê os dados digitados pelo usuário.
-* `System.in` representa a entrada do sistema, normalmente o teclado.
-* `nextLine()` lê uma linha inteira e retorna uma `String`.
-* O usuário digita descrição, valor e tipo da transação.
-* O valor digitado é convertido para `BigDecimal`.
-* O tipo digitado é convertido para `TransactionType`.
-* As conversões e a criação da transação ficam dentro do mesmo `try`, pois podem gerar exceções.
-* Dentro do `try`, as variáveis `value` e `type` podem ser usadas para criar uma `Transaction`.
-* Após criar a transação, ela é adicionada ao sistema com `manager.addTransaction(transaction)`.
+- `addTransaction()` — adiciona uma transação.
+- `listTransactions()` — lista as transações registradas.
+- `calculateBalance()` — calcula o saldo atual.
+- `calculateTotalByType()` — calcula o total por tipo.
+- `findTransactionByDescription()` — busca uma transação pela descrição.
+- `getSignedValue()` — retorna valor positivo para receita e negativo para despesa.
+- `toString()` — define a representação textual da transação.
 
-### Laços de repetição
+## 8. Validações e exceções
 
-* `while` repete um bloco enquanto uma condição for verdadeira.
-* A variável `boolean cadastrarOutro` controla se o cadastro continua.
-* `equalsIgnoreCase("S")` aceita `S` ou `s` como resposta para continuar.
-* O `FinanceManager` é criado antes do `while` para manter todas as transações na mesma lista.
-* O resumo final fica fora do `while`, pois deve aparecer apenas depois que o usuário encerrar os cadastros.
+O construtor de `Transaction` valida:
+
+- Descrição nula ou vazia
+- Valor nulo
+- Valor menor ou igual a zero
+- Tipo nulo
+
+Exceções praticadas:
+
+- `IllegalArgumentException`
+- `NumberFormatException`
+
+O `try-catch` permite tratar entradas inválidas sem encerrar o programa imediatamente.
+
+## 9. Entrada de dados
+
+`Scanner` lê os dados digitados no terminal.
+
+Fluxo atual:
+
+1. Ler descrição.
+2. Ler valor.
+3. Converter o valor para `BigDecimal`.
+4. Ler o tipo.
+5. Converter o tipo para `TransactionType`.
+6. Criar a `Transaction`.
+7. Adicionar a transação ao `FinanceManager`.
+
+## 10. Laços de repetição
+
+O `while` mantém o cadastro ativo enquanto o usuário desejar adicionar novas transações.
+
+O `FinanceManager` é criado fora do laço para que todas as transações permaneçam na mesma lista durante a execução.
+
+## Checkpoint atual
+
+Já foram praticados:
+
+- POO básica
+- Encapsulamento
+- Enums
+- Collections com `List` e `ArrayList`
+- `BigDecimal`
+- Validações
+- Exceções
+- Entrada de dados
+- Laços de repetição
 
 ## Próximos passos
 
-* Melhorar validações e operações com transações.
-* Aprender outras coleções: `Set` e `Map`.
-* Criar testes com JUnit.
-* Salvar dados com SQL e JDBC.
-* Evoluir o projeto para uma API com Spring Boot.
+1. Aprofundar Collections e Generics.
+2. Melhorar o tratamento de erros.
+3. Criar testes com JUnit.
+4. Adicionar persistência com SQL e JDBC.
+5. Evoluir o projeto para Spring Boot.
